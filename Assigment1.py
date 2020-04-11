@@ -1,6 +1,7 @@
 #!/usr/bin/python37
 import os.path
 import argparse
+
 def fibonacci(number):
     if number == 0:
         return 0
@@ -10,11 +11,12 @@ def fibonacci(number):
         return fibonacci(number-1) + fibonacci(number-2)
 
 def main():
-    print("HI")
-    parser = argparse.ArgumentParser(description='This program finds the nth number in the Fibonacci sequence and outputs to the file directed.')
 
-    parser.add_argument('-n', dest='number', type=int, help="Sequence number in Fibonacci sequence")
-    parser.add_argument('-f', metavar='filename', type=str, nargs="+", help="String for file name")
+    parser_formatter= argparse.ArgumentDefaultsHelpFormatter 
+    parser = argparse.ArgumentParser(description='This program finds the nth number in the Fibonacci sequence and outputs to the file directed.', formatter_class=parser_formatter)
+
+    parser.add_argument('-n', dest='number', required=True, type=int, help="Sequence number in Fibonacci sequence")
+    parser.add_argument('-f', dest='filename', required=True, type=str, help="String for file name")
 
     args = parser.parse_args()
     number = args.number
@@ -24,9 +26,7 @@ def main():
     #filename=input("What is the name of the file: ")
     #number=int(input("How many terms: "))
 
-
-
-    for n in range(0,number+1):
+    for n in range(0,int(number)+1):
         print(fibonacci(n))
 
     try:
