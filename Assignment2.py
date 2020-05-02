@@ -14,10 +14,11 @@ print (args.r)
 domain = 'https://www.python.org'
 url = 'https://www.python.org/downloads'
 
-versions = []
+versions = ["2.7.4", "3.3.1", "3.5.9"]
+
+request = requests.get(url)
 
 def get_soup(url):
-    request = requests.get(url)
     return BeautifulSoup(requests.get(url).text, 'html.parser')
 soup = get_soup(url)
 
